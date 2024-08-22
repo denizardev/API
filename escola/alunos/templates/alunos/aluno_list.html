@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alunos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Lista de Alunos</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Voltar para a Página Inicial</a></li>
+                <li><a href="{% url 'aluno_create' %}">Adicionar Novo Aluno</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>{{ aluno.id }}</td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.idade }}</td>
+                        <td>
+                            <a href="{% url 'aluno_detail' aluno.pk %}">Detalhes</a> |
+                            <a href="{% url 'aluno_update' aluno.pk %}">Editar</a> |
+                            <a href="{% url 'aluno_delete' aluno.pk %}">Excluir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

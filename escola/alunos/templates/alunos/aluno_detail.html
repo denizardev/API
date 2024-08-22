@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do Aluno</title>
+</head>
+<body>
+    <h1>{{ aluno.nome }}</h1>
+    <p>Idade: {{ aluno.idade }}</p>
+    <p>Nota do Primeiro Semestre: {{ aluno.nota_primeiro_semestre }}</p>
+    <p>Nota do Segundo Semestre: {{ aluno.nota_segundo_semestre }}</p>
+    <p>Nome do Professor: {{ aluno.nome_professor }}</p>
+    <p>Número da Sala: {{ aluno.numero_sala }}</p>
+    <a href="{% url 'aluno_update' aluno.pk %}">Editar</a>
+    <a href="{% url 'aluno_list' %}">Voltar à Lista</a>
+</body>
+</html>
