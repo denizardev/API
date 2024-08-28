@@ -1,1 +1,1 @@
-web: gunicorn escola.wsgi
+web: gunicorn escola.wsgi:application
