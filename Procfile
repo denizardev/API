@@ -1,2 +1,1 @@
-web: gunicorn escola.wsgi --log-file -
-
+web: gunicorn escola.wsgi
