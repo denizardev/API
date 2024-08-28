@@ -1,0 +1,52 @@
+body {
+    font-family: 'JetBrains Mono', monospace;
+    color: #333; /* Cor do texto, ajuste se necessário */
+    background-color: #f4f4f4; /* Cor de fundo, ajuste se necessário */
+}
+
+header, nav, h1, ul {
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Centraliza o texto e o conteúdo */
+}
+
+ul {
+    list-style-type: none; /* Remove marcadores de lista */
+    padding: 0;
+}
+
+li {
+    margin: 10px 0; /* Espaçamento entre os itens da lista */
+}
+
+a {
+    text-decoration: none;
+    color: #007bff; /* Cor dos links */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
