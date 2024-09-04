@@ -1,44 +1,28 @@
-from django.shortcuts import render
- #from django.http import HttpResponse
-
-# Create your views here.
-from django.shortcuts import render, get_object_or_404, redirect
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
 from .models import Aluno
-from .forms import AlunoForm # type: ignore
-def home(request):
-        return render(request, 'alunos/home.html')
-def aluno_list(request):
+from .serializers import AlunoSerializer
+
+@api_view(['GET'])
+def get_alunos(request):
     alunos = Aluno.objects.all()
-    return render(request, 'alunos/aluno_list.html', {'alunos': alunos})
+    serializer = AlunoSerializer(alunos, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
-def aluno_detail(request, pk):
-    aluno = get_object_or_404(Aluno, pk=pk)
-    return render(request, 'alunos/aluno_detail.html', {'aluno': aluno})
+@api_view(['POST'])
+def criar_aluno(request):
+    serializer = AlunoSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-def aluno_create(request):
-    if request.method == "POST":
-        form = AlunoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('aluno_list')
-    else:
-        form = AlunoForm()
-    return render(request, 'alunos/aluno_form.html', {'form': form})
-
-def aluno_update(request, pk):
-    aluno = get_object_or_404(Aluno, pk=pk)
-    if request.method == "POST":
-        form = AlunoForm(request.POST, instance=aluno)
-        if form.is_valid():
-            form.save()
-            return redirect('aluno_detail', pk=pk)
-    else:
-        form = AlunoForm(instance=aluno)
-    return render(request, 'alunos/aluno_form.html', {'form': form})
-
-def aluno_delete(request, pk):
-    aluno = get_object_or_404(Aluno, pk=pk)
-    if request.method == "POST":
-        aluno.delete()
-        return redirect('aluno_list')
-    return render(request, 'alunos/aluno_confirm_delete.html', {'aluno': aluno})
+@api_view(['GET'])
+def get_aluno(request, id):
+    try:
+        aluno = Aluno.objects.get(pk=id)
+    except Aluno.DoesNotExist:
+        return Response({"error": "Aluno não encontrado"}, status=status.HTTP_404_NOT_FOUND)
+    serializer = AlunoSerializer(aluno)
+    return Response(serializer.data, status=status.HTTP_200_OK)
