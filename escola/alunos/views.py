@@ -4,7 +4,7 @@ from rest_framework import status
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Aluno
 from .serializers import AlunoSerializer
-from .forms import AlunoForm  # Certifique-se de que o formulário está corretamente definido
+from .forms import AlunoForm  # Certifique-se de que o formulário AlunoForm esteja definido
 
 # Funções para a API REST
 @api_view(['GET'])
@@ -35,20 +35,37 @@ def aluno_list(request):
     alunos = Aluno.objects.all()
     return render(request, 'aluno_list.html', {'alunos': alunos})
 
-def home(request):
-    return render(request, 'home.html')
-
 def aluno_detail(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
     return render(request, 'aluno_detail.html', {'aluno': aluno})
 
-# Função para criar aluno via interface web
 def aluno_create(request):
     if request.method == 'POST':
-        form = AlunoForm(request.POST)  # Supondo que você tenha um formulário para isso
+        form = AlunoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('aluno_list')
     else:
         form = AlunoForm()
     return render(request, 'aluno_form.html', {'form': form})
+
+def aluno_update(request, pk):
+    aluno = get_object_or_404(Aluno, pk=pk)
+    if request.method == 'POST':
+        form = AlunoForm(request.POST, instance=aluno)
+        if form.is_valid():
+            form.save()
+            return redirect('aluno_list')
+    else:
+        form = AlunoForm(instance=aluno)
+    return render(request, 'aluno_update.html', {'form': form})
+
+def aluno_delete(request, pk):
+    aluno = get_object_or_404(Aluno, pk=pk)
+    if request.method == 'POST':
+        aluno.delete()
+        return redirect('aluno_list')
+    return render(request, 'aluno_delete.html', {'aluno': aluno})
+
+def home(request):
+    return render(request, 'home.html')

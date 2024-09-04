@@ -12,8 +12,8 @@ class Aluno(models.Model):
      
     nota_primeiro_semestre = models.DecimalField(max_digits=5, decimal_places=2)
     nota_segundo_semestre = models.DecimalField(max_digits=5, decimal_places=2)
-    professor = models.CharField(max_length=100)
-    sala = models.CharField(max_length=20)
+    
+    
 
     def __str__(self):
         return self.nome

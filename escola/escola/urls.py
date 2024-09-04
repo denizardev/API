@@ -20,7 +20,8 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('alunos/', include('alunos.urls')),  # Inclui as rotas de alunos
-    path('', home, name='home'),  # Rota para a página inicial
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger
+    path('alunos/', include('alunos.urls')),
+    path('', home, name='home'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0),
+         name='schema-swagger-ui'),
 ]

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Atualizar Aluno</title>
+    {% load static %}
+</head>
+<body>
+    <h1>Atualizar Aluno</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar Alterações</button>
+    </form>
+    <a href="{% url 'aluno_list' %}">Voltar à Lista</a>
+</body>
+</html>
