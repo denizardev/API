@@ -69,3 +69,4 @@ def aluno_delete(request, pk):
 
 def home(request):
     return render(request, 'home.html')
+
