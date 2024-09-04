@@ -1,16 +1,17 @@
+<!-- templates/aluno_detail.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Detalhes do Aluno</title>
 </head>
 <body>
-    <h1>{{ aluno.nome }}</h1>
-    <p>Idade: {{ aluno.idade }}</p>
-    <p>Nota do Primeiro Semestre: {{ aluno.nota_primeiro_semestre }}</p>
-    <p>Nota do Segundo Semestre: {{ aluno.nota_segundo_semestre }}</p>
-    <p>Nome do Professor: {{ aluno.nome_professor }}</p>
-    <p>Número da Sala: {{ aluno.numero_sala }}</p>
-    <a href="{% url 'aluno_update' aluno.pk %}">Editar</a>
-    <a href="{% url 'aluno_list' %}">Voltar à Lista</a>
+    <h1>Detalhes do Aluno</h1>
+    <p><strong>ID:</strong> {{ aluno.id }}</p>
+    <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+    <p><strong>Idade:</strong> {{ aluno.idade }}</p>
+    <p><strong>Nota 1º Semestre:</strong> {{ aluno.nota_primeiro_semestre }}</p>
+    <p><strong>Nota 2º Semestre:</strong> {{ aluno.nota_segundo_semestre }}</p>
+    <p><strong>Nome do Professor:</strong> {{ aluno.nome_professor }}</p>
+    <p><strong>Número da Sala:</strong> {{ aluno.numero_sala }}</p>
 </body>
 </html>

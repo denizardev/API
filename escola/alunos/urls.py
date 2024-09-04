@@ -17,5 +17,6 @@ urlpatterns = [
     path('novo/', views.aluno_create, name='aluno_create'),
     path('<int:pk>/editar/', views.aluno_update, name='aluno_update'),
     path('<int:pk>/deletar/', views.aluno_delete, name='aluno_delete'),
+    
 ]
 

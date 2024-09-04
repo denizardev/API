@@ -3,6 +3,10 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from .models import Aluno
 from .serializers import AlunoSerializer
+from django.shortcuts import render
+
+
+
 
 @api_view(['GET'])
 def get_alunos(request):
@@ -26,3 +30,16 @@ def get_aluno(request, id):
         return Response({"error": "Aluno não encontrado"}, status=status.HTTP_404_NOT_FOUND)
     serializer = AlunoSerializer(aluno)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+def aluno_list(request):
+    alunos = Aluno.objects.all()
+    return render(request, 'aluno_list.html', {'alunos': alunos})
+
+
+def home(request):
+    # Sua lógica aqui
+    return render(request, 'home.html')
+
+def aluno_detail(request, pk):
+    aluno = get_object_or_404(Aluno, pk=pk)
+    return render(request, 'aluno_detail.html', {'aluno': aluno})
