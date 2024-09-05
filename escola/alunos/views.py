@@ -7,6 +7,9 @@ from .serializers import AlunoSerializer
 from .forms import AlunoForm  # Certifique-se de que o formulário AlunoForm esteja definido
 
 # Funções para a API REST
+def home(request):
+    return render(request,'home.html')
+
 @api_view(['GET'])
 def get_alunos(request):
     alunos = Aluno.objects.all()
@@ -67,6 +70,4 @@ def aluno_delete(request, pk):
         return redirect('aluno_list')
     return render(request, 'aluno_delete.html', {'aluno': aluno})
 
-def home(request):
-    return render(request, 'home.html')
 
